@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Color guide: https://www.google.com/design/spec/style/color.html#color-color-palette -->
+<resources>
+    <!-- Main colors -->
+    <color name="primary">#F44336</color> <!-- Red 500 -->
+    <color name="primaryDark">#D32F2F</color> <!-- Red 700 -->
+    <color name="primaryLight">#FFCDD2</color> <!-- Red 100 -->
+    <color name="accent">#80DEEA</color> <!-- Cyan 200 / For buttons, switches, sliders etc. -->
+    <color name="navigationBar">#000000</color> <!-- Black 100% -->
+    <color name="background">#303030</color> <!-- Grey -->
+
+    <!-- Text colors -->
+    <color name="primaryText">#FFFFFFFF</color> <!-- White 100% -->
+    <color name="secondaryText">#B2FFFFFF</color> <!-- White 70% -->
+    <color name="hintAndDisabledText">#4CFFFFFF</color> <!-- White 30% -->
+    <color name="dividers">#1EFFFFFF</color> <!-- White 12% -->
+
+    <!-- Other colors -->
+    <color name="cardsAndDialogs">#424242</color> <!-- Grey 800 -->
+</resources>
