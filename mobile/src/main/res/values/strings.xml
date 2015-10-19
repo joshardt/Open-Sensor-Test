@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Open Sensor Test</string>
     <string name="action_settings">Settings</string>
+
+    <string name="activity_recognition">Activity Recognition</string>
+    <string name="acceleration_sensor">Acceleration Sensor</string>
 </resources>
