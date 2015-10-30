@@ -15,6 +15,8 @@ public class SensorInfo {
     // SensorInfo information
     private final int nameResId;
     private final int imageResId;
+    private final int infoOneTextResId;
+    private final int infoTwoTextResId;
     private final Map<String, String> valueMap;
 
     /**
@@ -22,11 +24,13 @@ public class SensorInfo {
      * @param nameResId The name of the sensor as resource ID.
      * @param imageResId The image of the sensor as resource ID.
      */
-    protected SensorInfo(final int nameResId, final int imageResId) {
+    protected SensorInfo(final int nameResId, final int imageResId, final int infoOneTextResId, final int infoTwoTextResId) {
         Log.d(TAG, "SensorInfo constructor");
 
         this.nameResId = nameResId;
         this.imageResId = imageResId;
+        this.infoOneTextResId = infoOneTextResId;
+        this.infoTwoTextResId = infoTwoTextResId;
         this.valueMap = new LinkedHashMap<>();
     }
 
@@ -46,6 +50,24 @@ public class SensorInfo {
     protected int getImageResId() {
         Log.d(TAG, "getImageResId");
         return this.imageResId;
+    }
+
+    /**
+     * Get the info one text of the sensor as resource ID.
+     * @return The info one text of the sensor as resource ID.
+     */
+    protected int getInfoOneTextResId() {
+        Log.d(TAG, "getNameResId");
+        return this.infoOneTextResId;
+    }
+
+    /**
+     * Get the info two text of the sensor as resource ID.
+     * @return The info two text of the sensor as resource ID.
+     */
+    protected int getInfoTwoTextResId() {
+        Log.d(TAG, "getNameResId");
+        return this.infoTwoTextResId;
     }
 
     /**

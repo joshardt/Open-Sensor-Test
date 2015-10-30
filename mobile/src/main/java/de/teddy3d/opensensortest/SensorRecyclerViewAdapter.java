@@ -53,11 +53,13 @@ public class SensorRecyclerViewAdapter extends RecyclerView.Adapter<SensorRecycl
         final SensorInfo sensorInfo = dataSet.get(position);
         viewHolder.sensorName.setText(sensorInfo.getNameResId());
         viewHolder.sensorImage.setImageResource(sensorInfo.getImageResId());
+        viewHolder.sensorInfoOneText.setText(sensorInfo.getInfoOneTextResId());
+        viewHolder.sensorInfoTwoText.setText(sensorInfo.getInfoTwoTextResId());
         final Map<String, String> valueMap = sensorInfo.getValueMap();
         if (valueMap.size() > 1) {
             final String[] values = valueMap.values().toArray(new String[2]);
-            viewHolder.sensorInfoOne.setText(values[0]);
-            viewHolder.sensorInfoTwo.setText(values[1]);
+            viewHolder.sensorInfoOneValue.setText(values[0]);
+            viewHolder.sensorInfoTwoValue.setText(values[1]);
         }
     }
 
@@ -75,18 +77,21 @@ public class SensorRecyclerViewAdapter extends RecyclerView.Adapter<SensorRecycl
      * View Holder.
      */
     protected static class ViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
-        private final TextView sensorName;
-        private final TextView sensorInfoOne;
-        private final TextView sensorInfoTwo;
         private final ImageView sensorImage;
+        private final TextView sensorName;
+        private final TextView sensorInfoOneText;
+        private final TextView sensorInfoTwoText;
+        private final TextView sensorInfoOneValue;
+        private final TextView sensorInfoTwoValue;
 
         private ViewHolder(final CardView cardView) {
             super(cardView);
-            this.sensorName = (TextView) cardView.findViewById(R.id.sensor_name);
-            this.sensorInfoOne = (TextView) cardView.findViewById(R.id.sensor_info_one);
-            this.sensorInfoTwo = (TextView) cardView.findViewById(R.id.sensor_info_two);
             this.sensorImage = (ImageView) cardView.findViewById(R.id.sensor_image);
+            this.sensorName = (TextView) cardView.findViewById(R.id.sensor_name);
+            this.sensorInfoOneText = (TextView) cardView.findViewById(R.id.sensor_info_one_text);
+            this.sensorInfoTwoText = (TextView) cardView.findViewById(R.id.sensor_info_two_text);
+            this.sensorInfoOneValue = (TextView) cardView.findViewById(R.id.sensor_info_one_value);
+            this.sensorInfoTwoValue = (TextView) cardView.findViewById(R.id.sensor_info_two_value);
         }
     }
 }

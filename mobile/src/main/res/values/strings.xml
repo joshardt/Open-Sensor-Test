@@ -1,7 +1,32 @@
 <resources>
     <string name="app_name">Open Sensor Test</string>
-    <string name="action_settings">Settings</string>
 
+    <!-- Sensor names -->
     <string name="activity_recognition">Activity Recognition</string>
-    <string name="acceleration_sensor">Acceleration Sensor</string>
+    <string name="activity_result">Result:</string>
+    <string name="activity_confidence">Confidence:</string>
+    <string name="acceleration">Acceleration</string>
+    <string name="acceleration_linear">Acceleration linear</string>
+    <string name="cell">Cell</string>
+    <string name="gps">GPS</string>
+    <string name="gps_assisted">GPS Assisted</string>
+    <string name="gravity">Gravity</string>
+    <string name="gyroscope">Gyroscope</string>
+    <string name="gyroscope_uncalibrated">Gyroscope uncalibrated</string>
+    <string name="heart_rate">Heart rate</string>
+    <string name="light">Light</string>
+    <string name="magnetic_field">Magnetic field</string>
+    <string name="magnetic_field_uncalibrated">Magnetic field uncalibrated</string>
+    <string name="orientation">Orientation</string>
+    <string name="pressure">Pressure</string>
+    <string name="proximity">Proximity</string>
+    <string name="relative_humidity">Relative humidity</string>
+    <string name="rotation_vector">Rotation vector</string>
+    <string name="rotation_vector_game">Rotation vector game</string>
+    <string name="rotation_vector_geomagnetic">Rotation vector geomagnetic</string>
+    <string name="significant_motion">Significant motion</string>
+    <string name="step_counter">Step counter</string>
+    <string name="step_detector">Step detector</string>
+    <string name="temperature">Temperature</string>
+    <string name="temperature_ambient">Temperature ambient</string>
 </resources>

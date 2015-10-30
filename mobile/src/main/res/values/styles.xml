@@ -10,6 +10,11 @@
         <item name="android:navigationBarColor">@color/navigationBar</item>
         <item name="android:windowBackground">@color/background</item>
 
+        <!-- Action Bar settings -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+
         <!-- Text colors -->
         <item name="android:textColorPrimary">@color/primaryText</item>
         <item name="android:textColorSecondary">@color/secondaryText</item>

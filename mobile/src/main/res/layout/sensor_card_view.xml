@@ -39,23 +39,41 @@
             android:textColor="#00FF00"
             android:text="•"/>
         <TextView
-            android:id="@+id/sensor_info_one"
+            android:id="@+id/sensor_info_one_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/sensor_image"
             android:layout_below="@+id/sensor_name"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Sensor info one: 3.14159265359"/>
+            android:text="Sensor info one:"/>
         <TextView
-            android:id="@+id/sensor_info_two"
+            android:id="@+id/sensor_info_one_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/sensor_info_one_text"
+            android:layout_below="@+id/sensor_name"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="8dp"
+            android:text="3.14159265359"/>
+        <TextView
+            android:id="@+id/sensor_info_two_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/sensor_image"
-            android:layout_below="@+id/sensor_info_one"
+            android:layout_below="@+id/sensor_info_one_text"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
-            android:text="Sensor info two: 23.5711131719"/>
+            android:text="Sensor info two:"/>
+        <TextView
+            android:id="@+id/sensor_info_two_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/sensor_info_two_text"
+            android:layout_below="@+id/sensor_info_one_text"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:text="23.5711131719"/>
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>
