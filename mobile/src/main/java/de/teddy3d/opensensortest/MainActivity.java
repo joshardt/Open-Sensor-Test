@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity
     // Activity recognition member variables
     private static final String KEY_ACTIVITY_RECOGNITION_UPDATE = "key_activity_recognition_update";
     private BroadcastReceiver activityRecognitionReceiver;
+    private PendingIntent activityRecognitionIntent;
     private GoogleApiClient googleApiClient;
 
     @Override
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity
 
         buildSensorRecyclerView();
         buildGoogleApiClient();
+        buildActivityRecognitionBroadcast();
     }
 
     /**
@@ -242,63 +244,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * Stop all sensors.
+     * Build the activity recognition broadcast.
      */
-    private void stopSensors() {
-        googleApiClient.disconnect();
-    }
-
-    /**
-     * Method of {@link ConnectionCallbacks} interface.
-     * After calling connect(), this method will be invoked asynchronously when the connect request
-     * has successfully completed.
-     *
-     * @param connectionHint Bundle of data provided to clients by Google Play services. May be null
-     *                       if no content is provided by the service.
-     */
-    @Override
-    public void onConnected(final Bundle connectionHint) {
-        Log.d(TAG, "onConnected");
-
-        startActivityRecognitionUpdates();
-    }
-
-    /**
-     * Method of {@link ConnectionCallbacks} interface.
-     * Called when the client is temporarily in a disconnected state.
-     *
-     * @param cause The reason for the disconnection. Defined by constants CAUSE_*.
-     */
-    @Override
-    public void onConnectionSuspended(final int cause) {
-        Log.d(TAG, "onConnectionSuspended");
-
-        switch (cause) {
-            case CAUSE_NETWORK_LOST:
-                Log.w(TAG, "onConnectionSuspended: " + "Cause: Network lost (Cause ID: " + cause + ")");
-                break;
-            case CAUSE_SERVICE_DISCONNECTED:
-                Log.w(TAG, "onConnectionSuspended: " + "Cause: Service disconnected (Cause ID: " + cause + ")");
-                break;
-            default:
-                Log.w(TAG, "onConnectionSuspended: " + "Cause: unknown (Cause ID: " + cause + ")");
-                break;
-        }
-    }
-
-    /**
-     * Method of {@link OnConnectionFailedListener} interface.
-     *
-     * @param connectionResult The result of the Google API client connection.
-     */
-    @Override
-    public void onConnectionFailed(final ConnectionResult connectionResult) {
-
-    }
-
-    private void startActivityRecognitionUpdates() {
-        Log.d(TAG, "startActivityRecognitionUpdates");
-
+    private void buildActivityRecognitionBroadcast() {
         activityRecognitionReceiver = new BroadcastReceiver() {
             /**
              * This method is called when the BroadcastReceiver is receiving an Intent broadcast.
@@ -389,11 +337,89 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         };
+    }
+
+    /**
+     * Start all sensors.
+     */
+    private void startSensors() {
+        startActivityRecognitionUpdates();
+    }
+
+    /**
+     * Stop all sensors.
+     */
+    private void stopSensors() {
+        stopActivityRecognitionUpdates();
+        googleApiClient.disconnect();
+    }
+
+    /**
+     * Method of {@link ConnectionCallbacks} interface.
+     * After calling connect(), this method will be invoked asynchronously when the connect request
+     * has successfully completed.
+     *
+     * @param connectionHint Bundle of data provided to clients by Google Play services. May be null
+     *                       if no content is provided by the service.
+     */
+    @Override
+    public void onConnected(final Bundle connectionHint) {
+        Log.d(TAG, "onConnected");
+
+        startSensors();
+    }
+
+    /**
+     * Method of {@link ConnectionCallbacks} interface.
+     * Called when the client is temporarily in a disconnected state.
+     *
+     * @param cause The reason for the disconnection. Defined by constants CAUSE_*.
+     */
+    @Override
+    public void onConnectionSuspended(final int cause) {
+        Log.d(TAG, "onConnectionSuspended");
+
+        switch (cause) {
+            case CAUSE_NETWORK_LOST:
+                Log.w(TAG, "onConnectionSuspended: " + "Cause: Network lost (Cause ID: " + cause + ")");
+                break;
+            case CAUSE_SERVICE_DISCONNECTED:
+                Log.w(TAG, "onConnectionSuspended: " + "Cause: Service disconnected (Cause ID: " + cause + ")");
+                break;
+            default:
+                Log.w(TAG, "onConnectionSuspended: " + "Cause: unknown (Cause ID: " + cause + ")");
+                break;
+        }
+    }
+
+    /**
+     * Method of {@link OnConnectionFailedListener} interface.
+     *
+     * @param connectionResult The result of the Google API client connection.
+     */
+    @Override
+    public void onConnectionFailed(final ConnectionResult connectionResult) {
+        // TODO: Implement behaviour for a failed  connection
+    }
+
+    /**
+     * Start activity recognition updates.
+     */
+    private void startActivityRecognitionUpdates() {
+        Log.d(TAG, "startActivityRecognitionUpdates");
 
         this.registerReceiver(activityRecognitionReceiver, new IntentFilter(KEY_ACTIVITY_RECOGNITION_UPDATE));
         final Intent intent = new Intent(KEY_ACTIVITY_RECOGNITION_UPDATE);
-        final PendingIntent activityRecognitionIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        activityRecognitionIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates(googleApiClient, 0, activityRecognitionIntent);
+    }
+
+    /**
+     * Stop activity recognition updates.
+     */
+    private void stopActivityRecognitionUpdates() {
+        ActivityRecognition.ActivityRecognitionApi.removeActivityUpdates(googleApiClient, activityRecognitionIntent);
+        this.unregisterReceiver(activityRecognitionReceiver);
     }
 
     /**
