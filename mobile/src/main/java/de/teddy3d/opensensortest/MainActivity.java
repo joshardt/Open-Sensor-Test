@@ -420,6 +420,10 @@ public class MainActivity extends AppCompatActivity
     private void stopActivityRecognitionUpdates() {
         ActivityRecognition.ActivityRecognitionApi.removeActivityUpdates(googleApiClient, activityRecognitionIntent);
         this.unregisterReceiver(activityRecognitionReceiver);
+        if (googleApiClient.isConnected()) {
+            ActivityRecognition.ActivityRecognitionApi.removeActivityUpdates(googleApiClient, activityRecognitionIntent);
+            this.unregisterReceiver(activityRecognitionReceiver);
+        }
     }
 
     /**
