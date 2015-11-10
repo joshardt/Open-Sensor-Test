@@ -1,10 +1,23 @@
 <resources>
     <string name="app_name">Open Sensor Test</string>
 
-    <!-- Sensor names -->
+    <!-- General values -->
+    <string name="value_one">Value 1:</string>
+    <string name="value_two">Value 2:</string>
+
+    <!-- Activity recognition -->
     <string name="activity_recognition">Activity Recognition</string>
-    <string name="activity_result">Result:</string>
-    <string name="activity_confidence">Confidence:</string>
+    <string name="activity_recognition_recognized_activity">Recognized activity:</string>
+    <string name="activity_recognition_confidence">Confidence:</string>
+    <string name="activity_recognition_in_vehicle">In vehicle</string>
+    <string name="activity_recognition_on_bicycle">On bicycle</string>
+    <string name="activity_recognition_on_foot">On foot</string>
+    <string name="activity_recognition_running">Running</string>
+    <string name="activity_recognition_still">Still</string>
+    <string name="activity_recognition_tilting">Tilting</string>
+    <string name="activity_recognition_unknown">Unknown</string>
+    <string name="activity_recognition_walking">Walking</string>
+
     <string name="acceleration">Acceleration</string>
     <string name="acceleration_linear">Acceleration linear</string>
     <string name="cell">Cell</string>

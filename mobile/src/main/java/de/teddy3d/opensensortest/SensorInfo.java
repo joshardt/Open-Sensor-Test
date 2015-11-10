@@ -2,7 +2,6 @@ package de.teddy3d.opensensortest;
 
 import android.util.Log;
 
-import java.util.Map;
 import java.util.LinkedHashMap;
 
 /**
@@ -11,27 +10,48 @@ import java.util.LinkedHashMap;
 public class SensorInfo {
     // SensorInfo static member values
     protected static String TAG = SensorInfo.class.getSimpleName();
+    protected static int ACTIVITY_RECOGNITION = 0;
+    protected static int ACCELERATION = 1;
+    protected static int ACCELERATION_LINEAR = 2;
+    protected static int CELL = 3;
+    protected static int GPS = 4;
+    protected static int GPS_ASSISTED = 5;
+    protected static int GRAVITY = 6;
+    protected static int GYROSCOPE = 7;
+    protected static int GYROSCOPE_UNCALIBRATED = 8;
+    protected static int HEART_RATE = 9;
+    protected static int LIGHT = 10;
+    protected static int MAGNETIC_FIELD = 11;
+    protected static int MAGNETIC_FIELD_UNCALIBRATED = 12;
+    protected static int ORIENTATION = 13;
+    protected static int PRESSURE = 14;
+    protected static int PROXIMITY = 15;
+    protected static int RELATIVE_HUMIDITY = 16;
+    protected static int ROTATION_VECTOR = 17;
+    protected static int ROTATION_VECTOR_GAME = 18;
+    protected static int ROTATION_VECTOR_GEOMAGNETIC = 19;
+    protected static int SIGNIFICANT_MOTION = 20;
+    protected static int STEP_COUNTER = 21;
+    protected static int STEP_DETECTOR = 22;
+    protected static int TEMPERATURE = 23;
+    protected static int TEMPERATURE_AMBIENT = 24;
 
     // SensorInfo information
     private final int nameResId;
     private final int imageResId;
-    private final int infoOneTextResId;
-    private final int infoTwoTextResId;
-    private final Map<String, String> valueMap;
+    private final LinkedHashMap<Integer, String> values;
 
     /**
      * Create a new SensorInfo object.
      * @param nameResId The name of the sensor as resource ID.
      * @param imageResId The image of the sensor as resource ID.
      */
-    protected SensorInfo(final int nameResId, final int imageResId, final int infoOneTextResId, final int infoTwoTextResId) {
+    protected SensorInfo(final int nameResId, final int imageResId) {
         Log.d(TAG, "SensorInfo constructor");
 
         this.nameResId = nameResId;
         this.imageResId = imageResId;
-        this.infoOneTextResId = infoOneTextResId;
-        this.infoTwoTextResId = infoTwoTextResId;
-        this.valueMap = new LinkedHashMap<>();
+        this.values = new LinkedHashMap<>();
     }
 
     /**
@@ -53,29 +73,21 @@ public class SensorInfo {
     }
 
     /**
-     * Get the info one text of the sensor as resource ID.
-     * @return The info one text of the sensor as resource ID.
+     * Add or update a value for this sensor.
+     * @param nameResId The name of the value as resource ID.
+     * @param value The actual value as String.
      */
-    protected int getInfoOneTextResId() {
-        Log.d(TAG, "getNameResId");
-        return this.infoOneTextResId;
+    protected void addOrUpdateValue(final int nameResId, final String value) {
+        Log.d(TAG, "getValues");
+        this.values.put(nameResId, value);
     }
 
     /**
-     * Get the info two text of the sensor as resource ID.
-     * @return The info two text of the sensor as resource ID.
-     */
-    protected int getInfoTwoTextResId() {
-        Log.d(TAG, "getNameResId");
-        return this.infoTwoTextResId;
-    }
-
-    /**
-     * Get a map of all values for the sensor.
+     * Get a map of all values for this sensor.
      * @return A value map for the sensor.
      */
-    protected Map<String, String> getValueMap() {
-        Log.d(TAG, "getValueMap");
-        return this.valueMap;
+    protected LinkedHashMap<Integer, String> getValues() {
+        Log.d(TAG, "getValues");
+        return this.values;
     }
 }

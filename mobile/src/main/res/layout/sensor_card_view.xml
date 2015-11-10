@@ -18,26 +18,14 @@
             android:id="@+id/sensor_image"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:src="@mipmap/ic_launcher"
-            android:contentDescription="Sensor image"/>
+            android:src="@mipmap/ic_launcher" />
         <TextView
             android:id="@+id/sensor_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/sensor_image"
             android:layout_marginStart="8dp"
-            android:textSize="@dimen/heading_one"
-            android:text="Sensor Name"/>
-        <TextView
-            android:id="@+id/sensor_active"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/sensor_name"
-            android:layout_marginStart="8dp"
-            android:textSize="@dimen/heading_one"
-            android:gravity="end"
-            android:textColor="#00FF00"
-            android:text="•"/>
+            android:textSize="@dimen/heading_one" />
         <TextView
             android:id="@+id/sensor_info_one_text"
             android:layout_width="wrap_content"
@@ -46,7 +34,7 @@
             android:layout_below="@+id/sensor_name"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Sensor info one:"/>
+            android:text="@string/value_one"/>
         <TextView
             android:id="@+id/sensor_info_one_value"
             android:layout_width="wrap_content"
@@ -54,8 +42,7 @@
             android:layout_toEndOf="@+id/sensor_info_one_text"
             android:layout_below="@+id/sensor_name"
             android:layout_marginStart="2dp"
-            android:layout_marginTop="8dp"
-            android:text="3.14159265359"/>
+            android:layout_marginTop="8dp" />
         <TextView
             android:id="@+id/sensor_info_two_text"
             android:layout_width="wrap_content"
@@ -64,7 +51,7 @@
             android:layout_below="@+id/sensor_info_one_text"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
-            android:text="Sensor info two:"/>
+            android:text="@string/value_two"/>
         <TextView
             android:id="@+id/sensor_info_two_value"
             android:layout_width="wrap_content"
@@ -72,8 +59,7 @@
             android:layout_toEndOf="@+id/sensor_info_two_text"
             android:layout_below="@+id/sensor_info_one_text"
             android:layout_marginStart="2dp"
-            android:layout_marginTop="2dp"
-            android:text="23.5711131719"/>
+            android:layout_marginTop="2dp" />
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

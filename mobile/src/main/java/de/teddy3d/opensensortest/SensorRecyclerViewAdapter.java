@@ -1,26 +1,33 @@
 package de.teddy3d.opensensortest;
 
+import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 
-public class SensorRecyclerViewAdapter extends RecyclerView.Adapter<SensorRecyclerViewAdapter.ViewHolder> {
+public class SensorRecyclerViewAdapter extends RecyclerView.Adapter<SensorRecyclerViewAdapter.ViewHolder>
+    implements View.OnClickListener {
 
     public static String TAG = SensorRecyclerViewAdapter.class.getSimpleName();
 
-    private final List<SensorInfo> dataSet;
+    private final Context context;
+    private final RecyclerView sensorRecyclerView;
+    private final Map<Integer, SensorInfo> dataSet;
 
     // Provide a suitable constructor (depends on the kind of dataSet)
-    protected SensorRecyclerViewAdapter(final List<SensorInfo> sensorInfo) {
+    protected SensorRecyclerViewAdapter(final Context context, final RecyclerView sensorRecyclerView, final HashMap<Integer, SensorInfo> sensorInfo) {
         Log.d(TAG, "SensorRecyclerViewAdapter constructor");
 
+        this.context = context;
+        this.sensorRecyclerView = sensorRecyclerView;
         this.dataSet = sensorInfo;
     }
 
@@ -37,6 +44,7 @@ public class SensorRecyclerViewAdapter extends RecyclerView.Adapter<SensorRecycl
         final CardView cardView = (CardView) LayoutInflater.from(
                 parent.getContext()).inflate(R.layout.sensor_card_view, parent, false
         );
+        cardView.setOnClickListener(this);
         return new ViewHolder(cardView);
     }
 
@@ -53,13 +61,22 @@ public class SensorRecyclerViewAdapter extends RecyclerView.Adapter<SensorRecycl
         final SensorInfo sensorInfo = dataSet.get(position);
         viewHolder.sensorName.setText(sensorInfo.getNameResId());
         viewHolder.sensorImage.setImageResource(sensorInfo.getImageResId());
-        viewHolder.sensorInfoOneText.setText(sensorInfo.getInfoOneTextResId());
-        viewHolder.sensorInfoTwoText.setText(sensorInfo.getInfoTwoTextResId());
-        final Map<String, String> valueMap = sensorInfo.getValueMap();
-        if (valueMap.size() > 1) {
-            final String[] values = valueMap.values().toArray(new String[2]);
-            viewHolder.sensorInfoOneValue.setText(values[0]);
-            viewHolder.sensorInfoTwoValue.setText(values[1]);
+        final HashMap<Integer, String> values = sensorInfo.getValues();
+        byte counter = 0;
+        for (Map.Entry<Integer, String> entry : values.entrySet()) {
+            if (counter == 0) {
+                viewHolder.sensorInfoOneText.setText(context.getText(entry.getKey()));
+                viewHolder.sensorInfoOneValue.setText(entry.getValue());
+                counter++;
+            }
+            else if (counter == 1) {
+                viewHolder.sensorInfoTwoText.setText(context.getText(entry.getKey()));
+                viewHolder.sensorInfoTwoValue.setText(entry.getValue());
+                counter++;
+            }
+            else {
+                break;
+            }
         }
     }
 
@@ -74,14 +91,28 @@ public class SensorRecyclerViewAdapter extends RecyclerView.Adapter<SensorRecycl
     }
 
     /**
+     * Called when a view has been clicked.
+     *
+     * @param view The view that was clicked.
+     */
+    @Override
+    public void onClick(final View view) {
+        int position = sensorRecyclerView.indexOfChild(view);
+        Log.d(TAG, "Clicked on position " + position);
+
+        // TODO: Start new fragment and pass (every value of) sensorInfo
+        // SensorInfo sensorInfo = dataSet.get(position);
+    }
+
+    /**
      * View Holder.
      */
     protected static class ViewHolder extends RecyclerView.ViewHolder {
         private final ImageView sensorImage;
         private final TextView sensorName;
         private final TextView sensorInfoOneText;
-        private final TextView sensorInfoTwoText;
         private final TextView sensorInfoOneValue;
+        private final TextView sensorInfoTwoText;
         private final TextView sensorInfoTwoValue;
 
         private ViewHolder(final CardView cardView) {
@@ -89,8 +120,8 @@ public class SensorRecyclerViewAdapter extends RecyclerView.Adapter<SensorRecycl
             this.sensorImage = (ImageView) cardView.findViewById(R.id.sensor_image);
             this.sensorName = (TextView) cardView.findViewById(R.id.sensor_name);
             this.sensorInfoOneText = (TextView) cardView.findViewById(R.id.sensor_info_one_text);
-            this.sensorInfoTwoText = (TextView) cardView.findViewById(R.id.sensor_info_two_text);
             this.sensorInfoOneValue = (TextView) cardView.findViewById(R.id.sensor_info_one_value);
+            this.sensorInfoTwoText = (TextView) cardView.findViewById(R.id.sensor_info_two_text);
             this.sensorInfoTwoValue = (TextView) cardView.findViewById(R.id.sensor_info_two_value);
         }
     }
