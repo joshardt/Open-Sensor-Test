@@ -418,8 +418,6 @@ public class MainActivity extends AppCompatActivity
      * Stop activity recognition updates.
      */
     private void stopActivityRecognitionUpdates() {
-        ActivityRecognition.ActivityRecognitionApi.removeActivityUpdates(googleApiClient, activityRecognitionIntent);
-        this.unregisterReceiver(activityRecognitionReceiver);
         if (googleApiClient.isConnected()) {
             ActivityRecognition.ActivityRecognitionApi.removeActivityUpdates(googleApiClient, activityRecognitionIntent);
             this.unregisterReceiver(activityRecognitionReceiver);
