@@ -2,8 +2,7 @@
     <string name="app_name">Open Sensor Test</string>
 
     <!-- General values -->
-    <string name="value_one">Value 1:</string>
-    <string name="value_two">Value 2:</string>
+    <string name="sensor_image_content_description">Sensorbild</string>
 
     <!-- Activity recognition -->
     <string name="activity_recognition">Bewegungserkennung</string>
