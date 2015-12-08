@@ -16,5 +16,5 @@
     <color name="dividers">#1EFFFFFF</color> <!-- White 12% -->
 
     <!-- Other colors -->
-    <color name="cardsAndDialogs">#424242</color> <!-- Grey 800 -->
+    <color name="cardsAndDialogs">#616161</color> <!-- Grey 700 -->
 </resources>
