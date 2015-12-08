@@ -3,17 +3,11 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <!-- Main colors -->
-        <item name="android:colorPrimary">@color/primary</item>
-        <item name="android:colorPrimaryDark">@color/primaryDark</item>
-        <item name="android:colorAccent">@color/accent</item>
-        <item name="android:statusBarColor">@color/primaryDark</item>
-        <item name="android:navigationBarColor">@color/navigationBar</item>
         <item name="android:windowBackground">@color/background</item>
 
         <!-- Action Bar settings -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
 
         <!-- Text colors -->
         <item name="android:textColorPrimary">@color/primaryText</item>
