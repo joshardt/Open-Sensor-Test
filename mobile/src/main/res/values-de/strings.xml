@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">Open Sensor Test</string>
+
+    <!-- General values -->
+    <string name="value_one">Value 1:</string>
+    <string name="value_two">Value 2:</string>
+
+    <!-- Activity recognition -->
+    <string name="activity_recognition">Bewegungserkennung</string>
+    <string name="activity_recognition_recognized_activity">Erkannte Bewegung:</string>
+    <string name="activity_recognition_confidence">Genauigkeit:</string>
+    <string name="activity_recognition_in_vehicle">Im Fahrzeug</string>
+    <string name="activity_recognition_on_bicycle">Auf dem Fahrrad</string>
+    <string name="activity_recognition_on_foot">Zu Fuß</string>
+    <string name="activity_recognition_running">Rennend</string>
+    <string name="activity_recognition_still">Ruhig</string>
+    <string name="activity_recognition_tilting">Geneigt</string>
+    <string name="activity_recognition_unknown">Unbekannt</string>
+    <string name="activity_recognition_walking">Laufend</string>
+
+    <string name="acceleration">Beschleunigung</string>
+    <string name="acceleration_linear">Beschleunigung linear</string>
+    <string name="cell">Funkzelle</string>
+    <string name="gps">GPS</string>
+    <string name="gps_assisted">GPS Assisted</string>
+    <string name="gravity">Gravitation</string>
+    <string name="gyroscope">Gyroskop</string>
+    <string name="gyroscope_uncalibrated">Gyroskop nicht kalibriert</string>
+    <string name="heart_rate">Herzfrequenz / Puls</string>
+    <string name="light">Licht</string>
+    <string name="magnetic_field">Magnetisches Feld</string>
+    <string name="magnetic_field_uncalibrated">Magnetisches Feld nicht kalibriert</string>
+    <string name="orientation">Orientierung</string>
+    <string name="pressure">Druck</string>
+    <string name="proximity">Näherungssensor</string>
+    <string name="relative_humidity">Relative Feuchtigkeit</string>
+    <string name="rotation_vector">Rotationsvektor</string>
+    <string name="rotation_vector_game">Rotationsvektor Spiel</string>
+    <string name="rotation_vector_geomagnetic">Rotationsvektor geomagnetisch</string>
+    <string name="significant_motion">Signifikante Bewegung</string>
+    <string name="step_counter">Schrittzähler</string>
+    <string name="step_detector">Schrittanzeiger</string>
+    <string name="temperature">Temperatur</string>
+    <string name="temperature_ambient">Temperatur Umgebung</string>
+</resources>
