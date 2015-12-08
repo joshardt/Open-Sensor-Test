@@ -2,11 +2,10 @@ package de.teddy3d.opensensortest;
 
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,12 +22,14 @@ import com.google.android.gms.location.LocationServices;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity
-        implements ConnectionCallbacks, OnConnectionFailedListener, SensorEventListener {
+        implements ConnectionCallbacks, OnConnectionFailedListener {
 
     public static String TAG = MainActivity.class.getSimpleName();
 
+    // Sensor member variables
     private RecyclerView.Adapter sensorRecyclerViewAdapter;
     private final HashMap<Integer, SensorInfo> sensorInfoMap = new HashMap<>();
+    private SensorDataReceiver sensorDataReceiver;
 
     // Activity recognition member variables
     private static final String KEY_ACTIVITY_RECOGNITION_UPDATE = "key_activity_recognition_update";
@@ -45,8 +46,7 @@ public class MainActivity extends AppCompatActivity
 
         buildSensorRecyclerView();
         buildGoogleApiClient();
-
-        activityRecognitionReceiver = new ActivityRecognitionReceiver(sensorInfoMap.get(SensorInfo.ACTIVITY_RECOGNITION), sensorRecyclerViewAdapter);
+        buildSensors();
     }
 
     /**
@@ -110,8 +110,8 @@ public class MainActivity extends AppCompatActivity
         sensorRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         sensorInfoMap.put(SensorInfo.ACTIVITY_RECOGNITION, new SensorInfo(R.string.activity_recognition, R.mipmap.ic_launcher));
+        sensorInfoMap.put(SensorInfo.ACCELERATION, new SensorInfo(R.string.acceleration, R.mipmap.ic_launcher));
         // TODO: Implement more sensors
-        // sensorInfoMap.put(SensorInfo.ACCELERATION, new SensorInfo(R.string.acceleration, R.mipmap.ic_launcher));
 
         // Set recycler view adapter
         sensorRecyclerViewAdapter = new SensorRecyclerViewAdapter(getApplicationContext(), sensorRecyclerView, sensorInfoMap);
@@ -133,10 +133,21 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
+     * Build all sensors.
+     */
+    private void buildSensors() {
+        activityRecognitionReceiver = new ActivityRecognitionReceiver(sensorInfoMap.get(SensorInfo.ACTIVITY_RECOGNITION), sensorRecyclerViewAdapter);
+
+        final SensorManager sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        sensorDataReceiver = new SensorDataReceiver(sensorInfoMap, sensorRecyclerViewAdapter, sensorManager);
+    }
+
+    /**
      * Start all sensors.
      */
     private void startSensors() {
         startActivityRecognitionUpdates();
+        sensorDataReceiver.startSensors();
     }
 
     /**
@@ -144,6 +155,7 @@ public class MainActivity extends AppCompatActivity
      */
     private void stopSensors() {
         stopActivityRecognitionUpdates();
+        sensorDataReceiver.stopSensors();
         googleApiClient.disconnect();
     }
 
@@ -215,29 +227,5 @@ public class MainActivity extends AppCompatActivity
             ActivityRecognition.ActivityRecognitionApi.removeActivityUpdates(googleApiClient, activityRecognitionIntent);
             this.unregisterReceiver(activityRecognitionReceiver);
         }
-    }
-
-    /**
-     * Method of {@link SensorEventListener}.<br>
-     * Called when sensor values have changed.
-     *
-     * @param sensorEvent This class represents a {@link Sensor} event and holds information such as the
-     *                    sensor's type, the time-stamp, accuracy and of course the sensor's data.
-     */
-    @Override
-    public void onSensorChanged(final SensorEvent sensorEvent) {
-
-    }
-
-    /**
-     * Method of {@link SensorEventListener}.<br>
-     * Called when the accuracy of the registered sensor has changed.
-     *
-     * @param sensor The corresponding sensor.
-     * @param accuracy The new accuracy of this sensor, one of SensorManager.SENSOR_STATUS_*
-     */
-    @Override
-    public void onAccuracyChanged(final Sensor sensor, final int accuracy) {
-
     }
 }

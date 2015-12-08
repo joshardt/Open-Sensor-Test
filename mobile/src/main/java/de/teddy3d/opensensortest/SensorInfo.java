@@ -8,8 +8,9 @@ import java.util.LinkedHashMap;
  * Contains every information of a sensor card view.
  */
 public class SensorInfo {
-    // SensorInfo static member values
+
     protected static String TAG = SensorInfo.class.getSimpleName();
+
     protected static int ACTIVITY_RECOGNITION = 0;
     protected static int ACCELERATION = 1;
     protected static int ACCELERATION_LINEAR = 2;
@@ -19,22 +20,19 @@ public class SensorInfo {
     protected static int GRAVITY = 6;
     protected static int GYROSCOPE = 7;
     protected static int GYROSCOPE_UNCALIBRATED = 8;
-    protected static int HEART_RATE = 9;
-    protected static int LIGHT = 10;
-    protected static int MAGNETIC_FIELD = 11;
-    protected static int MAGNETIC_FIELD_UNCALIBRATED = 12;
-    protected static int ORIENTATION = 13;
-    protected static int PRESSURE = 14;
-    protected static int PROXIMITY = 15;
-    protected static int RELATIVE_HUMIDITY = 16;
-    protected static int ROTATION_VECTOR = 17;
-    protected static int ROTATION_VECTOR_GAME = 18;
-    protected static int ROTATION_VECTOR_GEOMAGNETIC = 19;
-    protected static int SIGNIFICANT_MOTION = 20;
-    protected static int STEP_COUNTER = 21;
-    protected static int STEP_DETECTOR = 22;
-    protected static int TEMPERATURE = 23;
-    protected static int TEMPERATURE_AMBIENT = 24;
+    protected static int LIGHT = 9;
+    protected static int MAGNETIC_FIELD = 10;
+    protected static int MAGNETIC_FIELD_UNCALIBRATED = 11;
+    protected static int PRESSURE = 12;
+    protected static int PROXIMITY = 13;
+    protected static int RELATIVE_HUMIDITY = 14;
+    protected static int ROTATION_VECTOR = 15;
+    protected static int ROTATION_VECTOR_GAME = 16;
+    protected static int ROTATION_VECTOR_GEOMAGNETIC = 17;
+    protected static int SIGNIFICANT_MOTION = 18;
+    protected static int STEP_COUNTER = 19;
+    protected static int STEP_DETECTOR = 20;
+    protected static int TEMPERATURE_AMBIENT = 21;
 
     // SensorInfo information
     private final int nameResId;

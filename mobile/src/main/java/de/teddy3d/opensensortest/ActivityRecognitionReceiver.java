@@ -12,12 +12,12 @@ import com.google.android.gms.location.DetectedActivity;
 
 public class ActivityRecognitionReceiver extends BroadcastReceiver {
 
-    public static String TAG = ActivityRecognitionReceiver.class.getSimpleName();
+    protected static String TAG = ActivityRecognitionReceiver.class.getSimpleName();
 
     private final SensorInfo sensorInfo;
     private final RecyclerView.Adapter sensorRecyclerViewAdapter;
 
-    public ActivityRecognitionReceiver(@NonNull final SensorInfo sensorInfo, @NonNull final RecyclerView.Adapter sensorRecyclerViewAdapter) {
+    protected ActivityRecognitionReceiver(@NonNull final SensorInfo sensorInfo, @NonNull final RecyclerView.Adapter sensorRecyclerViewAdapter) {
         this.sensorInfo = sensorInfo;
         this.sensorRecyclerViewAdapter = sensorRecyclerViewAdapter;
     }
